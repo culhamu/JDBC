@@ -1,3 +1,5 @@
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,7 +16,7 @@ public class JDBC02_execute_executeUpdate {
     B) - execute() metodu her tur SQL ifadesiyle kullanilabilen genel bir komuttur.
        - execute(), Boolean bir deger dondurur. DDL islemlerinde false dondururken,
          DML islemlerinde true deger dondurur.
-       - Ozellikle, hangi tip SQL ifadesinin kullanilmasinin gerektiginin belli olmadigi
+       - Ozellikle, hangi tip SQL ifadesine hangi methodun uygun olduğu bilenemediği
          durumlarda tercih edilmektedir.
     C) - executeUpdate() metodu ise INSERT, Update gibi DML islemlerinde yaygin kullanilir.
        - bu islemlerde islemden etkilenen satir sayisini dondurur.
@@ -27,8 +29,12 @@ public class JDBC02_execute_executeUpdate {
         Statement st = con.createStatement();
 
 
+        /*======================================================================
+        ORNEK1: ogrenciler tablosunu siliniz.
+        ========================================================================*/
 
-
+        String dropQuery="drop table ogrenciler";
+        System.out.println(st.execute(dropQuery));
 
 
     }
